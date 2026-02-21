@@ -2,9 +2,9 @@
 
 namespace Mawuva\LaravelSerialSequence;
 
+use Mawuva\LaravelSerialSequence\Commands\LaravelSerialSequenceCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Mawuva\LaravelSerialSequence\Commands\LaravelSerialSequenceCommand;
 
 class LaravelSerialSequenceServiceProvider extends PackageServiceProvider
 {
