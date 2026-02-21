@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('serial_sequences', function (Blueprint $table) {
+            $table->id();
+            $table->uuid('uuid')->unique();
+            $table->string('serie', 10);
+            $table->smallInteger('year');
+            $table->smallInteger('month');
+            $table->unsignedInteger('last_number')->default(0);
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique(['serie', 'year', 'month'], 'uniq_serial_sequences_serie_period');
+            $table->index(['serie', 'year', 'month'], 'idx_serial_sequences_lookup');
+        });
+    }
+};
