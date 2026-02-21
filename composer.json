@@ -1,22 +1,22 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "mawuva/laravel-serial-sequence",
+    "description": "A flexible, transactional, and extensible serial number generator for Laravel.",
     "keywords": [
-        ":vendor_name",
+        "Ephraim Seddor",
         "laravel",
-        ":package_slug"
+        "laravel-serial-sequence"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/mawuva/laravel-serial-sequence",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Ephraim Seddor",
+            "email": "seddorephraim7@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.4",
+        "php": "^8.3",
         "spatie/laravel-package-tools": "^1.16",
         "illuminate/contracts": "^11.0||^12.0"
     },
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Mawuva\\LaravelSerialSequence\\": "src/",
+            "Mawuva\\LaravelSerialSequence\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Mawuva\\LaravelSerialSequence\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Mawuva\\LaravelSerialSequence\\LaravelSerialSequenceServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelSerialSequence": "Mawuva\\LaravelSerialSequence\\Facades\\LaravelSerialSequence"
             }
         }
     },
