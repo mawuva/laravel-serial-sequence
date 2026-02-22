@@ -30,20 +30,20 @@ composer require mawuva/laravel-serial-sequence
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-serial-sequence-migrations"
+php artisan vendor:publish --tag="serial-sequence-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-serial-sequence-config"
+php artisan vendor:publish --tag="serial-sequence-config"
 ```
 
 You can publish both migrations and config with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-serial-sequence"
+php artisan vendor:publish --tag="serial-sequence"
 ```
 
 ## Database Setup
