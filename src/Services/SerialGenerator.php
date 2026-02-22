@@ -31,24 +31,7 @@ class SerialGenerator
         $month = (int) $now->format('m');
 
         return DB::transaction(function () use ($serie, $year, $month, $prefix) {
-
-            $sequence = SerialSequence::forPeriod($serie, $year, $month)
-                            ->lockForUpdate()
-                            ->first();
-
-            if (!$sequence) {
-                $sequence = SerialSequence::create([
-                    'serie' => $serie,
-                    'year' => $year,
-                    'month' => $month,
-                    'last_number' => 1,
-                ]);
-
-                $number = 1;
-            } else {
-                $sequence->increment('last_number');
-                $number = $sequence->last_number;
-            }
+            [$sequence, $number] = $this->getOrCreateSequenceForPeriod($serie, $year, $month);
 
             $serial = $this->formatSerial($serie, $year, $month, $number, $prefix);
 
@@ -60,6 +43,44 @@ class SerialGenerator
                 number: $number
             );
         });
+    }
+
+    /**
+     * Get or create sequence for the period with automatic reset.
+     *
+     * This method handles the sequence logic:
+     * - Finds existing sequence for the period
+     * - Creates new sequence if period changed (automatic reset)
+     * - Increments counter for existing sequences
+     *
+     * @param string $serie The serie identifier
+     * @param int $year The year component
+     * @param int $month The month component
+     * @return array{SerialSequence, int} Sequence and number to use
+     */
+    protected function getOrCreateSequenceForPeriod(string $serie, int $year, int $month): array
+    {
+        // Try to find existing sequence for this specific period
+        $sequence = SerialSequence::forPeriod($serie, $year, $month)
+                            ->lockForUpdate()
+                            ->first();
+
+        if (!$sequence) {
+            // Create new sequence for this period (automatic reset)
+            $sequence = SerialSequence::create([
+                'serie' => $serie,
+                'year' => $year,
+                'month' => $month,
+                'last_number' => 1,
+            ]);
+            $number = 1;
+        } else {
+            // Increment existing sequence
+            $sequence->increment('last_number');
+            $number = $sequence->last_number;
+        }
+
+        return [$sequence, $number];
     }
 
     /**
