@@ -11,13 +11,13 @@ Laravel Serial Sequence provides a robust solution for generating unique serial 
 
 ## Features
 
-- 🔄 **Automatic serial generation** with transaction safety
-- 📅 **Period-based sequences** (year/month combinations)
-- 🏷️ **Multiple series support** for different document types
-- 🔍 **Powerful query scopes** for filtering and searching
-- 🛡️ **Database-level uniqueness** guarantees
-- ⚡ **Optimized indexes** for performance
-- 🎯 **Flexible configuration** options
+- **Automatic serial generation** with transaction safety
+- **Period-based sequences** (year/month combinations)
+- **Multiple series support** for different document types
+- **Powerful query scopes** for filtering and searching
+- **Database-level uniqueness** guarantees
+- **Optimized indexes** for performance
+- **Flexible configuration** options
 
 ## Installation
 
@@ -42,7 +42,7 @@ php artisan vendor:publish --tag="laravel-serial-sequence-config"
 
 ## Database Setup
 
-### 🏗️ 1️⃣ Option "Snippet / Migration Example"
+### 1️. Option "Snippet / Migration Example"
 
 Copy-paste this ready-to-use migration snippet into your migration file:
 
@@ -67,7 +67,7 @@ Schema::table('orders', function (Blueprint $table) {
 - Easy for users who just want to copy-paste
 - Complete control over column names and indexes
 
-### 🏗️ 2️⃣ Option "Trait Auto Add Columns" (Recommended)
+### 2️. Option "Trait Auto Add Columns" (Recommended)
 
 Use the built-in `HasSerialColumns` trait for cleaner migrations:
 
