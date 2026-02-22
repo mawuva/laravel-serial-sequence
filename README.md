@@ -40,6 +40,12 @@ You can publish the config file with:
 php artisan vendor:publish --tag="laravel-serial-sequence-config"
 ```
 
+You can publish both migrations and config with:
+
+```bash
+php artisan vendor:publish --tag="laravel-serial-sequence"
+```
+
 ## Database Setup
 
 ### 1️. Option "Snippet / Migration Example"

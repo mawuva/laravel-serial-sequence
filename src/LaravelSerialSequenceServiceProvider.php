@@ -19,7 +19,7 @@ class LaravelSerialSequenceServiceProvider extends PackageServiceProvider
             ->name('laravel-serial-sequence')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_laravel_serial_sequence_table')
+            ->hasMigration('create_serial_sequences_table')
             ->hasCommand(LaravelSerialSequenceCommand::class);
     }
 }
