@@ -12,7 +12,7 @@ it('creates SerialData with correct properties', function () {
         month: 2,
         number: 123
     );
-    
+
     expect($serialData->serial)->toBe('INV-0224-000123');
     expect($serialData->serie)->toBe('INV');
     expect($serialData->year)->toBe(2024);
@@ -28,7 +28,7 @@ it('has readonly properties', function () {
         month: 1,
         number: 1
     );
-    
+
     // Properties should be readonly - attempting to modify should throw errors
     // We test this by checking that the properties maintain their original values
     expect($serialData->serial)->toBe('TEST-123');
@@ -36,7 +36,7 @@ it('has readonly properties', function () {
     expect($serialData->year)->toBe(2024);
     expect($serialData->month)->toBe(1);
     expect($serialData->number)->toBe(1);
-    
+
     // The readonly nature is enforced by PHP at compile time
     // so we don't need runtime tests for modification attempts
 });
@@ -44,7 +44,7 @@ it('has readonly properties', function () {
 it('validates property types', function () {
     // These should work with correct types
     expect(new SerialData('TEST', 'TEST', 2024, 1, 1))->toBeInstanceOf(SerialData::class);
-    
+
     // Test with various valid values
     $serialData = new SerialData(
         serial: 'INV-0224-000001',
@@ -53,7 +53,7 @@ it('validates property types', function () {
         month: 2,
         number: 1
     );
-    
+
     expect(is_string($serialData->serial))->toBeTrue();
     expect(is_string($serialData->serie))->toBeTrue();
     expect(is_int($serialData->year))->toBeTrue();
@@ -69,7 +69,7 @@ it('handles edge case values', function () {
         month: 0,
         number: 0
     );
-    
+
     expect($serialData->serial)->toBe('');
     expect($serialData->serie)->toBe('');
     expect($serialData->year)->toBe(0);
