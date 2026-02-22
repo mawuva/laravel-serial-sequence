@@ -40,7 +40,7 @@ class TestCase extends Orchestra
         }
 
         // Load test models migrations
-        foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__.'/database/migrations') as $migration) {
+        foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__.'/Database/migrations') as $migration) {
             (include $migration->getRealPath())->up();
         }
     }
