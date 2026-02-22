@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 trait HasSerialColumns
 {
-    public static function addSerialColumns(Blueprint $table): void
+    public static function addSerialColumns(Blueprint $table, ?string $indexPrefix = null): void
     {
         $table->string('serie', 10);
         $table->smallInteger('serial_year');
@@ -16,7 +16,10 @@ trait HasSerialColumns
         $table->unsignedInteger('serial_number');
         $table->string('serial')->unique();
 
-        $table->index(['serie', 'serial_year', 'serial_month'], 'idx_serial_period');
-        $table->index(['serie', 'serial_number'], 'idx_serie_number');
+        $periodIndexName = $indexPrefix ? "{$indexPrefix}_serial_period" : 'idx_serial_period';
+        $numberIndexName = $indexPrefix ? "{$indexPrefix}_serie_number" : 'idx_serie_number';
+
+        $table->index(['serie', 'serial_year', 'serial_month'], $periodIndexName);
+        $table->index(['serie', 'serial_number'], $numberIndexName);
     }
 }

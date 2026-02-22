@@ -42,6 +42,7 @@
     "autoload-dev": {
         "psr-4": {
             "Mawuva\\LaravelSerialSequence\\Tests\\": "tests/",
+            "Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },

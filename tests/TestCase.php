@@ -13,7 +13,13 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Tests\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            function (string $modelName): string {
+                if (str_starts_with($modelName, 'Mawuva\\LaravelSerialSequence\\')) {
+                    return 'Mawuva\\LaravelSerialSequence\\Database\\Factories\\'.class_basename($modelName).'Factory';
+                }
+
+                return 'Tests\\Database\\Factories\\'.class_basename($modelName).'Factory';
+            }
         );
     }
 
