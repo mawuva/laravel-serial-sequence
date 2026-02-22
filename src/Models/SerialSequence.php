@@ -30,4 +30,20 @@ class SerialSequence extends Model
     {
         return ['uuid'];
     }
+
+    /**
+     * Scope to get sequence for a specific period.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $serie
+     * @param int $year
+     * @param int $month
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeForPeriod($query, string $serie, int $year, int $month)
+    {
+        return $query->where('serie', $serie)
+                    ->where('year', $year)
+                    ->where('month', $month);
+    }
 }

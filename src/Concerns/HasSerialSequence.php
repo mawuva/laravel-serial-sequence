@@ -5,9 +5,23 @@ declare(strict_types=1);
 namespace Mawuva\LaravelSerialSequence\Concerns;
 
 use Mawuva\LaravelSerialSequence\Data\SerialData;
+use Mawuva\LaravelSerialSequence\Observers\SerialSequenceObserver;
 
-trait HasSerialAttributes
+trait HasSerialSequence
 {
+    /**
+     * Boot the trait and register the observer.
+     * 
+     * This method is automatically called by Laravel when the model boots.
+     * It registers the SerialSequenceObserver to handle automatic serial generation.
+     * 
+     * @return void
+     */
+    public static function bootHasSerialSequence(): void
+    {
+        static::observe(SerialSequenceObserver::class);
+    }
+
     /**
      * Set serial attributes from SerialData object.
      * 
