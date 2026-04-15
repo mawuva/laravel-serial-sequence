@@ -153,3 +153,15 @@ it('can chain scopes together', function () {
 
     expect($invoices)->toHaveCount(2);
 });
+
+it('does not cause infinite recursion during model boot', function () {
+    // Regression test for the bootIfNotBooted recursion bug
+    // This test ensures that creating a model doesn't trigger
+    // an infinite loop during the boot process
+    
+    // This should complete without throwing LogicException
+    $invoice = Invoice::create(['amount' => 100, 'customer_id' => 1, 'status' => 'draft']);
+    
+    expect($invoice)->toBeInstanceOf(Invoice::class);
+    expect($invoice->serial)->not->toBeNull();
+});

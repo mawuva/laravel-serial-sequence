@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-serial-sequence` will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+- Fixed infinite recursion bug when booting models with HasSerialSequence trait on Laravel 13.5.0+
+- Changed observer registration from `static::observe()` to `static::creating()` to prevent bootIfNotBooted recursion
+
 ## [1.0.1] - 2025-02-22
 
 ### Fixed

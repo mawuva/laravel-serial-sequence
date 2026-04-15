@@ -18,7 +18,7 @@ trait HasSerialSequence
      */
     public static function bootHasSerialSequence(): void
     {
-        static::observe(SerialSequenceObserver::class);
+        static::creating([SerialSequenceObserver::class, 'creating']);
     }
 
     /**
