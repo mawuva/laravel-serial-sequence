@@ -2,20 +2,28 @@
 
 All notable changes to `laravel-serial-sequence` will be documented in this file.
 
+## Bug Fix: Infinite Recursion on Model Boot (Laravel 13.5.0+) - 2026-04-15
+
+- Fixed infinite recursion bug when booting models with HasSerialSequence trait on Laravel 13.5.0+
+- Changed observer registration from `static::observe()` to `static::creating()` to prevent bootIfNotBooted recursion
+
 ## [Unreleased]
 
 ### Fixed
+
 - Fixed infinite recursion bug when booting models with HasSerialSequence trait on Laravel 13.5.0+
 - Changed observer registration from `static::observe()` to `static::creating()` to prevent bootIfNotBooted recursion
 
 ## [1.0.1] - 2025-02-22
 
 ### Fixed
+
 - Fixed test failures on GitHub due to case sensitivity in migration path (database vs Database)
 - Fixed vendor:publish commands not working due to incorrect migration name in service provider
 - Added combined publish command documentation in README
 
 ### Upgrade Notes
+
 If you have already published the migrations, you may need to republish them:
 
 ```bash
@@ -24,14 +32,15 @@ rm database/migrations/*create_laravel_serial_sequence_table*.php
 
 # Republish with correct tag
 php artisan vendor:publish --tag="laravel-serial-sequence-migrations"
-```
 
+```
 ## [1.0.0] - 2024-02-22
 
 ### Added
+
 - Initial release of Laravel Serial Sequence package
 - Automatic serial number generation with transaction safety
-- Period-based sequences (year/month combinations) 
+- Period-based sequences (year/month combinations)
 - Multiple series support for different document types
 - Powerful query scopes for filtering and searching
 - Database-level uniqueness guarantees
