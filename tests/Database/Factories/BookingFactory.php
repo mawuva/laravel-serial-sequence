@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Tests\Models\Booking;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Tests\Models\Booking>
+ * @extends Factory<Booking>
  */
 class BookingFactory extends Factory
 {

@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use Carbon\CarbonImmutable;
+use Mawuva\LaravelSerialSequence\Models\SerialSequence;
 use Mawuva\LaravelSerialSequence\Services\SerialGenerator;
 
 beforeEach(function () {
     // Clean up before each test
-    \Mawuva\LaravelSerialSequence\Models\SerialSequence::query()->delete();
+    SerialSequence::query()->delete();
 });
 
 it('automatically resets when year changes', function () {
@@ -76,7 +77,7 @@ it('handles large serial numbers correctly', function () {
     $generator = new SerialGenerator;
 
     // Create a sequence with high number
-    \Mawuva\LaravelSerialSequence\Models\SerialSequence::create([
+    SerialSequence::create([
         'serie' => 'INV',
         'year' => (int) now()->format('Y'),
         'month' => (int) now()->format('m'),

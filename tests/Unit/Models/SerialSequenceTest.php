@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Database\QueryException;
 use Mawuva\LaravelSerialSequence\Models\SerialSequence;
 
 it('can create a serial sequence', function () {
@@ -31,7 +32,7 @@ it('enforces unique constraint on serie, year and month', function () {
     SerialSequence::factory()->create($data);
 
     expect(fn () => SerialSequence::factory()->create($data))
-        ->toThrow(\Illuminate\Database\QueryException::class);
+        ->toThrow(QueryException::class);
 });
 
 it('has default value for last_number', function () {

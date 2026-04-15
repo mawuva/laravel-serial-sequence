@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\DB;
+use Mawuva\LaravelSerialSequence\Models\SerialSequence;
 use Tests\Models\Booking;
 use Tests\Models\Invoice;
 use Tests\Models\Order;
 
 beforeEach(function () {
     // Clean up before each test
-    \Mawuva\LaravelSerialSequence\Models\SerialSequence::query()->delete();
+    SerialSequence::query()->delete();
     Invoice::query()->delete();
     Order::query()->delete();
     Booking::query()->delete();
@@ -153,7 +155,7 @@ it('can query models using serial scopes', function () {
 it('handles database transactions correctly', function () {
     expect(function () {
         // Start a transaction and create an invoice
-        \Illuminate\Support\Facades\DB::transaction(function () {
+        DB::transaction(function () {
             Invoice::create([
                 'amount' => 100.00,
                 'customer_id' => 1,
@@ -161,13 +163,13 @@ it('handles database transactions correctly', function () {
             ]);
 
             // Force an error to rollback
-            throw new \Exception('Test rollback');
+            throw new Exception('Test rollback');
         });
-    })->toThrow(\Exception::class);
+    })->toThrow(Exception::class);
 
     // Verify no invoice was created and no sequence was incremented
     expect(Invoice::count())->toBe(0);
 
-    $sequence = \Mawuva\LaravelSerialSequence\Models\SerialSequence::where('serie', 'INV')->first();
+    $sequence = SerialSequence::where('serie', 'INV')->first();
     expect($sequence)->toBeNull();
 });

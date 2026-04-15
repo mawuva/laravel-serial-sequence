@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Tests\Models\Order;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Tests\Models\Order>
+ * @extends Factory<Order>
  */
 class OrderFactory extends Factory
 {

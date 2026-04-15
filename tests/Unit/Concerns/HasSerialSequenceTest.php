@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use Mawuva\LaravelSerialSequence\Data\SerialData;
+use Mawuva\LaravelSerialSequence\Models\SerialSequence;
 use Tests\Models\Invoice;
 
 beforeEach(function () {
     // Clean up before each test
-    \Mawuva\LaravelSerialSequence\Models\SerialSequence::query()->delete();
+    SerialSequence::query()->delete();
 });
 
 it('registers observer on boot', function () {
@@ -158,10 +159,10 @@ it('does not cause infinite recursion during model boot', function () {
     // Regression test for the bootIfNotBooted recursion bug
     // This test ensures that creating a model doesn't trigger
     // an infinite loop during the boot process
-    
+
     // This should complete without throwing LogicException
     $invoice = Invoice::create(['amount' => 100, 'customer_id' => 1, 'status' => 'draft']);
-    
+
     expect($invoice)->toBeInstanceOf(Invoice::class);
     expect($invoice->serial)->not->toBeNull();
 });

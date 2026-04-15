@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
+use Mawuva\LaravelSerialSequence\Models\SerialSequence;
 use Mawuva\LaravelSerialSequence\Observers\SerialSequenceObserver;
 use Tests\Models\Invoice;
 use Tests\Models\Order;
 
 beforeEach(function () {
     // Clean up before each test
-    \Mawuva\LaravelSerialSequence\Models\SerialSequence::query()->delete();
+    SerialSequence::query()->delete();
 });
 
 it('automatically generates serial on model creation', function () {
@@ -109,7 +110,7 @@ it('handles null prefix resolver gracefully', function () {
     $invoice = new Invoice(['amount' => 100.00, 'customer_id' => 1, 'status' => 'draft']);
 
     expect(fn () => $observer->creating($invoice))
-        ->not->toThrow(\Exception::class);
+        ->not->toThrow(Exception::class);
 
     expect($invoice->serial)->not->toBeNull();
     expect($invoice->serial)->not->toContain('/');

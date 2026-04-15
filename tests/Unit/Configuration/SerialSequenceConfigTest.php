@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+use Mawuva\LaravelSerialSequence\Models\SerialSequence;
 use Mawuva\LaravelSerialSequence\Services\SerialGenerator;
 
 beforeEach(function () {
     // Clean up before each test
-    \Mawuva\LaravelSerialSequence\Models\SerialSequence::query()->delete();
+    SerialSequence::query()->delete();
 
     // Reset config to defaults
     config([

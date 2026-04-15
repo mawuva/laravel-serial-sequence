@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mawuva\LaravelSerialSequence\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,8 +35,8 @@ class SerialSequence extends Model
     /**
      * Scope to get sequence for a specific period.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param  Builder  $query
+     * @return Builder
      */
     public function scopeForPeriod($query, string $serie, int $year, int $month)
     {

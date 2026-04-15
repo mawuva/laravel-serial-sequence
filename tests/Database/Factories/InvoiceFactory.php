@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Tests\Models\Invoice;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Tests\Models\Invoice>
+ * @extends Factory<Invoice>
  */
 class InvoiceFactory extends Factory
 {
